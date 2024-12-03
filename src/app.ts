@@ -1,9 +1,10 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import debug from 'debug';
 
 import 'express-async-errors';
+import errorHandler from './middlewares/error-handler';
 import { authRouter } from './routes/auth';
 import { homeRouter } from './routes/home';
 import { cardsRouter } from './routes/cards';
@@ -33,8 +34,21 @@ app.use('/api/accounts', AccountRouter);
 app.use('/api/cards', cardsRouter);
 app.use('/api/transactions', transactionRouter);
 
+// Example async route
+async function someAsyncFunction() {
+  throw new Error('Simulated error!');
+}
+
+app.get('/api/async-route', async (req: Request, res: Response) => {
+  const result = await someAsyncFunction(); // Errors will be caught by express-async-errors
+  res.json({ data: result });
+});
+
+// Error-handling middleware
+app.use(errorHandler);
+
 app.get('*', async (req, res) => {
-  res.status(404).send('Route Not found!');
+  res.status(404).send({ message: 'Route Not found!' });
 });
 
 export default app;

@@ -18,7 +18,7 @@ export default function authenticate(
   if (!token) return res.status(401).send('Access Denied. No token provided');
 
   try {
-    const payload = Password.verify(token);
+    const payload = Password.verifyJWT(token);
     req.authUser = payload;
     next();
   } catch (error) {

@@ -48,7 +48,7 @@ router.post('/signin', async (req: Request, res: Response) => {
     return res.status(401).send({ message: 'Invalid email or password' });
   }
 
-  const userJwt = Password.sign({
+  const userJwt = Password.generateJWT({
     _id: userExist._id,
     email: userExist.email,
     isAdmin: userExist.isAdmin,
