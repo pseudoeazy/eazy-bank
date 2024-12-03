@@ -1,8 +1,6 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import debug from 'debug';
-
 import 'express-async-errors';
 import errorHandler from './middlewares/error-handler';
 import { authRouter } from './routes/auth';
@@ -22,8 +20,6 @@ app.use(express.static('public'));
 
 if (app.get('env') === 'development') {
   app.use(morgan('tiny'));
-  const startupDebugger = debug('app:startup');
-  startupDebugger('Morgan enabled');
 }
 
 //api routes
@@ -34,17 +30,7 @@ app.use('/api/accounts', AccountRouter);
 app.use('/api/cards', cardsRouter);
 app.use('/api/transactions', transactionRouter);
 
-// Example async route
-async function someAsyncFunction() {
-  throw new Error('Simulated error!');
-}
-
-app.get('/api/async-route', async (req: Request, res: Response) => {
-  const result = await someAsyncFunction(); // Errors will be caught by express-async-errors
-  res.json({ data: result });
-});
-
-// Error-handling middleware
+// Error handling middleware
 app.use(errorHandler);
 
 app.get('*', async (req, res) => {

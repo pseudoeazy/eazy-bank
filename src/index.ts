@@ -1,10 +1,10 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import config from 'config';
+import app from './app';
 import db from './startup/db';
 import logger, { uncaughtLogger } from './startup/logger';
 import appConfig from './startup/app-config';
-import app from './app';
 
 const start = async () => {
   appConfig();
