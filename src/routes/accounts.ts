@@ -1,15 +1,15 @@
 import express, { Request, Response } from 'express';
 import Account from '../models/account';
-import { requireAuth } from '../middlewares/require-auth';
 import { generateAccountNumber } from '../services/acc-num-generator';
+import authenticate from '../middlewares/authenticate';
 
 const router = express.Router();
 
-router.post('/', requireAuth, async (req: Request, res: Response) => {
+router.post('/', authenticate, async (req: Request, res: Response) => {
   try {
     const accountNumber = generateAccountNumber();
 
-    const account = new Account({ accountNumber, user: req.currentUser });
+    const account = new Account({ accountNumber, user: req.authUser });
     await account.save();
 
     res.status(201).send({ message: 'Account created successfully' });
@@ -19,9 +19,9 @@ router.post('/', requireAuth, async (req: Request, res: Response) => {
   }
 });
 
-router.get('/', requireAuth, async (req: Request, res: Response) => {
+router.get('/', authenticate, async (req: Request, res: Response) => {
   try {
-    const account = Account.findOne({ user: req.currentUser?._id });
+    const account = Account.findOne({ user: req.authUser?._id });
     if (!account)
       return res.status(400).send({ message: 'Account not found!' });
 
