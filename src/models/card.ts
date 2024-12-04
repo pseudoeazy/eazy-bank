@@ -1,8 +1,7 @@
 import mongoose, { Schema, Document } from 'mongoose';
-import { IUser } from './user';
 
 export interface ICard extends Document {
-  _id: string;
+  _id: mongoose.Types.ObjectId;
   cardNumber: string;
   expiryDate: string;
   cvv: string;

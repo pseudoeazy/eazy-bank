@@ -1,0 +1,5 @@
+{
+    "name": "Node.js Bank Application - Test",
+    "jwtPrivateKey": "123",
+    "mongoDB": "mongodb://127.0.0.1:27017/eazy-bank-test"
+}

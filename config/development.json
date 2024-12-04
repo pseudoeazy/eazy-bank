@@ -1,3 +1,5 @@
 {
-    "name": "Node.js Bank App - Development"
+    "name": "Node.js Bank App - Development",
+    "jwtPrivateKey": "JWT_PRIVATE_KEY",
+    "mongoDB": "MONGO_DB"
 }

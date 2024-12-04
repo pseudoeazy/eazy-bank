@@ -6,7 +6,7 @@ import db from './startup/db';
 import logger, { uncaughtLogger } from './startup/logger';
 import appConfig from './startup/app-config';
 
-const start = async () => {
+const start = () => {
   appConfig();
   uncaughtLogger();
   db();
@@ -17,6 +17,4 @@ const start = async () => {
   });
 };
 
-start();
-
-export default start;
+export default start();

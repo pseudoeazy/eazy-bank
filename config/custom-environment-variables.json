@@ -1,4 +1,3 @@
 {
-    "jwtPrivateKey": "JWT_PRIVATE_KEY",
-    "mongoDB": "MONGO_DB"
+    "jwtPrivateKey": "JWT_PRIVATE_KEY"
 }
