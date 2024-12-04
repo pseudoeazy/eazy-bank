@@ -38,7 +38,7 @@ describe('/api/cards', () => {
       expect(res.status).toBe(401);
     });
 
-    it('should return an array of cards owned by the user', async () => {
+    it('should return an array of ATM cards owned by the user', async () => {
       const card = await generateATMCard();
       const savedCard = new Card({ user: user._id, ...card });
       await savedCard.save();
