@@ -7,8 +7,8 @@ import { generateATMCard } from '../../../src/services/card-generator';
 
 describe('/api/cards', () => {
   const endPoint = '/api/cards';
-  let token: string;
   const user = new User({ email: 'a@a.com', password: 'a' });
+  let token: string;
 
   beforeEach(() => {
     token = Password.generateJWT({
