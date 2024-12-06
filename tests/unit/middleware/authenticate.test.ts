@@ -41,4 +41,23 @@ describe('authenticate', () => {
     expect(res.send).toHaveBeenCalledWith('Access Denied. No token provided');
     expect(next).not.toHaveBeenCalled();
   });
+
+  it('should return 400 if token is invalid', () => {
+    const req = {
+      header: jest.fn().mockReturnValue('invalidToken'),
+    } as unknown as Request;
+
+    const res = {
+      status: jest.fn().mockReturnThis(),
+      send: jest.fn(),
+    } as unknown as Response;
+
+    const next = jest.fn() as NextFunction;
+
+    authenticate(req, res, next);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.send).toHaveBeenCalledWith('Invalid token provided.');
+    expect(next).not.toHaveBeenCalled();
+  });
 });
