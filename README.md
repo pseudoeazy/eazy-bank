@@ -86,9 +86,11 @@ Represents a financial transaction.
    Create a `.env` file in the root directory and add the following:
 
    ```
-   MONGO_URI=mongodb://localhost:27017/eazy-bank
-   JWT_SECRET=your_jwt_secret
-   PORT=3000
+   MONGO_DB=mongodb://127.0.0.1:27017/eazy-bank
+   MONGO_DB_TEST=mongodb://127.0.0.1:27017/eazy-bank-test
+   JWT_PRIVATE_KEY=jwt-private-key
+   PORT=4000
+   NODE_ENV=development
    ```
 
 4. Start the application:

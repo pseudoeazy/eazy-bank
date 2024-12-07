@@ -1,3 +1,4 @@
 {
-    "name": "Node.js Bank Application"
+    "name": "Node.js Bank Application",
+    "mongoDB": "MONGO_DB"
 }

@@ -69,10 +69,9 @@ describe('/api/cards', () => {
       const res = await apiRequest();
 
       expect(res.status).toBe(201);
-      expect(res.body).toHaveProperty('cardNumber');
-      expect(res.body).toHaveProperty('expiryDate');
-      expect(res.body).toHaveProperty('cvv');
-      expect(res.body).toHaveProperty('_id');
+      expect(Object.keys(res.body)).toEqual(
+        expect.arrayContaining(['cardNumber', 'expiryDate', 'cvv', '_id'])
+      );
     });
   });
 });

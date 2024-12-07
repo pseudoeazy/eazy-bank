@@ -27,7 +27,7 @@ describe('authenticate', () => {
   });
 
   const apiRequest = async () => {
-    return await request(server).get(endPoint).set({ 'x-auth-token': token });
+    return request(server).get(endPoint).set({ 'x-auth-token': token });
   };
 
   it('should return 401 if token is not provided', async () => {

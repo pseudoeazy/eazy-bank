@@ -7,6 +7,7 @@ import logger, { uncaughtLogger } from './startup/logger';
 import appConfig from './startup/app-config';
 
 const start = () => {
+  logger.info(`Current Environment: ${process.env.NODE_ENV}`);
   appConfig();
   uncaughtLogger();
   db();
